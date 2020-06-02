@@ -1,0 +1,89 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	
+	Scanner sc = new Scanner(System.in);
+	int n = sc.nextInt();//Tell me the nextInt;
+	int edges = sc.nextInt();
+	
+	int arr[][] = new int[n][n];
+	for(int i=0;i<edges;i++){
+	    int src = sc.nextInt();
+	    int desc = sc.nextInt();
+	    
+	    arr[src][desc] = 1;
+	}
+	
+	boolean visited[] = new boolean[n];
+	//Connected graph.
+	PrintDFS(arr, 0, visited);
+	
+	//non - connected graph
+	PrintDFS(arr);
+	
+	//non Connected - BFS
+	PrintBFS(arr);
+	
+	//Connected grahs;
+	PrintBFS(arr, 0);
+	}
+	
+	
+	public static void PrintDFS(int a[][]){
+	  boolean vis[] = new boolean[a.length];
+	  
+	  for(int i=0;i<n;i++){
+	      if(!vis[i]){
+	          PrintDFS(a, i, vis);
+	      }
+	  }
+	}
+	
+	public static void PrintDFS(int arr[][], int st, boolean[] visited){
+	    
+	    System.out.println(st);
+	    visited[st] =  true;
+	    
+	    for(int i=0;i<arr.length;i++){
+	        if(i!=st && !visited[i] && arr[st][i] == 1){
+	            PrintDFS(arr, st, visited);
+	        }
+	    }
+	}
+	public static void PrintBFS(int a[][]){
+	    for(int i=0;i<a.length;i++){
+	        PrintBFS(a,i);
+	    }
+	}
+	public static void PrintBFS(int a[][],int s)
+	{
+	    boolean visited[] = new boolean[a.length];
+	    Queue<Integer> q = new LinkedList<Integer>();
+        
+        q.add(s);
+        while(q.size()!=0){
+            int st = q.poll();
+            System.out.println(st);
+            
+            visited[st] = true;
+            for(int i=0;i<a.length;i++){
+                if(i!=j && !visited[i] && a[s][i]==1){
+                    q.add(i);
+                }
+            }
+        }
+	        
+	        
+	    }
+	}
+	
+	
+}

@@ -135,6 +135,8 @@ public static boolean HasPathBFS(int arr[][], int s, int v){
 	
 	
 	public static boolean HasPathBFS(int a[][], int st, int s, int e,boolean []vi){
+	
+	if(a[s][v]==1)return true;
 	    Queue<Integer> q= new LinkedList();
 	    q.add(s);
 	    vi[s] = true;
